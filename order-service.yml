@@ -1,2 +1,5 @@
-name: order-service
-description: Order Service Configurations
+spring:
+  application:
+    name: order-service
+custom:
+  message: "Hello from Config Server!"
