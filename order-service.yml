@@ -1,5 +1,66 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    metadata-map:
+      prometheus_scrape: "true"  # Only this metadata needed
+
 spring:
   application:
     name: order-service
-custom:
-  message: "Hello from Config Server!"
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/order_service
+    username: postgres
+    password: zahid7292
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://iam-test.jaza-soft.com/.well-known/jwks.json
+          issuer-uri:  # Leave this EMPTY (not used)
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+  micrometer:
+    enabled: true # Ensure Feign micrometer integration is enabled
+
+# Expose Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics, circuitbreakers
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}  # Add application name to metrics
+    export:
+      prometheus:
+        enabled: true
+  tracing:
+    sampling:
+      probability: 1.0 # Sample 100% of requests (adjust for production)
+  zipkin:
+    tracing:
+      endpoint: http://192.168.1.100:9411/api/v2/spans
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+    org.springframework.web.client: INFO
