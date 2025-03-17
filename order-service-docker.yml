@@ -3,7 +3,15 @@ eureka:
     serviceUrl:
       defaultZone: http://eureka-server:8761/eureka
 
+server:
+  tomcat:
+    threads:
+      max: 10000
+
 spring:
+  threads:
+    virtual:
+      enabled: true
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://micro-postgres:5432/order_service
