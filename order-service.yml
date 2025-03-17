@@ -53,6 +53,7 @@ management:
       prometheus:
         enabled: true
   tracing:
+    enabled: false
     sampling:
       probability: 1.0 # Sample 100% of requests (adjust for production)
   zipkin:
@@ -66,6 +67,5 @@ logging:
     org.springframework.web.client: INFO
 
 logstash:
-  enabled: false
   host: localhost
   port: 5044

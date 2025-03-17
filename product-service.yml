@@ -44,6 +44,7 @@ management:
       prometheus:
         enabled: true
   tracing:
+    enabled: false
     sampling:
       probability: 1.0 # Sample 100% of requests (adjust for production)
   zipkin:
