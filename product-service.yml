@@ -55,3 +55,8 @@ logging:
     org.springframework.security: INFO
     org.springframework.web: INFO
     org.springframework.web.client: INFO
+
+logstash:
+  enabled: false
+  host: localhost
+  port: 5044

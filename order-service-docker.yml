@@ -33,3 +33,8 @@ logging:
     org.springframework.security: INFO
     org.springframework.web: INFO
     org.springframework.web.client: INFO
+
+logstash:
+  enabled: false
+  host: logstash
+  port: 5044
