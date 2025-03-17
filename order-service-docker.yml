@@ -24,6 +24,8 @@ spring:
 
 # Expose Actuator endpoints
 management:
+  tracing:
+    enabled: true
   zipkin:
     tracing:
       endpoint: http://zipkin:9411/api/v2/spans
